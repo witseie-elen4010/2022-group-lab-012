@@ -1,3 +1,8 @@
-Web Appplication name: SpaceWordle
+#Web Appplication name: SpaceWordle
 
-Gabriella Ndhlovu
+#Names of the group members: \
+Gabriella Ndhlovu\
+Muchaveleli Manjate\
+Thabo Tshabalala\
+Christina Mathipa\
+Bongekile Mqhakama
