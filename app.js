@@ -17,7 +17,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 app.use('/play', playRouter);
+
+app.use('/createAcc', indexRouter);
+app.use('/newAcc', indexRouter);
 
 module.exports = app;
 app.listen(3000)
