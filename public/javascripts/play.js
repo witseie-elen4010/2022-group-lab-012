@@ -49,3 +49,121 @@ function keys() {
     }
 }
 keys()
+
+function handle_click(keyboard) {
+    if (!is_game_over) {
+        if (keyboard === '<<') {
+            delete_letter()
+            return
+        }
+        if (keyboard === 'ENTER') {
+            row_checker()
+            return
+        }
+        add_letter(keyboard)
+    }
+}
+
+function delete_letter() {
+    while (current_square > 0) {
+        current_square--
+        const square = document.getElementById('grid_row_elements-' + current_row + '-tile-' + current_square)
+        square.textContent = ''
+        grid_row[current_row][current_square] = ''
+        square.setAttribute('data', '')
+        break
+    }
+}
+
+function add_letter(alphabet) {
+    while (current_square < 5 && current_row < 6) {
+        const square = document.getElementById('grid_row_elements-' + current_row + '-tile-' + current_square)
+        square.textContent = alphabet
+        grid_row[current_row][current_square] = alphabet
+        square.setAttribute('data', alphabet)
+        current_square++
+        break
+    }
+}
+
+let word
+function get_word() {
+    fetch('http://localhost:3000/word')
+        .then(response => response.json())
+        .then(json => {
+            word = json.toUpperCase()
+        })
+        .catch(err => console.log(err))
+}
+
+get_word()
+
+
+function show_message(pop_up_status) {
+    const message = document.createElement('message_tag')
+    message.textContent = pop_up_status
+    displayed_message.append(message)
+    setTimeout(() => displayed_message.removeChild(message), 5000)
+}
+
+function row_checker() {
+    const guess = grid_row[current_row].join('')
+    if (current_square > 4) {
+        flip_tile()
+        if (word === guess) {
+            show_message('Awesome!')
+            is_game_over = true
+            return
+        }
+        else {
+            if (current_row >= 5) {
+                is_game_over = true
+                show_message('Game Over, The Word is ' + word)
+                return
+            }
+            else if (current_row < 5) {
+                current_row++
+                current_square = 0
+            }
+        }
+
+    }
+}
+
+keyboard_colour = (key_letter, colour) => {
+    const key = document.getElementById(key_letter)
+    key.classList.add(colour)
+}
+
+function flip_tile() {
+    const row_squares = document.querySelector('#grid_row_elements-' + current_row).childNodes
+    let word_checker = word
+    const guesses = []
+
+    row_squares.forEach(square => {
+        guesses.push({ letter: square.getAttribute('data'), colour: 'absent' })
+    })
+
+    guesses.forEach((guesses, i) => {
+        if (guesses.letter == word[i]) {
+            guesses.colour = 'correct'
+            word_checker = word_checker.replace(guesses.letter, '')
+        }
+    })
+
+    guesses.forEach(guesses => {
+        if (word_checker.includes(guesses.letter)) {
+            guesses.colour = 'pressent'
+            word_checker = word_checker.replace(guesses.letter, '')
+        }
+    })
+
+    row_squares.forEach((square, i) => {
+        setTimeout(() => {
+            square.classList.add('flip')
+            square.classList.add(guesses[i].colour)
+            keyboard_colour(guesses[i].letter, guesses[i].colour)
+        }, 400 * i)
+
+    })
+}
