@@ -19,6 +19,7 @@ app.use('/users', usersRouter);
 app.use('/play', indexRouter);
 app.use('/createAcc', indexRouter);
 app.use('/newAcc', indexRouter);
+app.use('/instructions', indexRouter);
 
 module.exports = app;
 app.listen(process.env.PORT || 8000)
