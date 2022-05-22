@@ -1,66 +1,27 @@
-* {
-  color: #ffffff;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-body {
-  background-color: #121213;
-}
-
-.game-basket {
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.title-basket {
+body{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   text-align: center;
-  width: 510px;
-  border-bottom: solid 1px #3a3a3c;
+  background: darkslategrey;
 }
 
-.title-basket {
-  width: 330px;
-  margin-bottom: 30px;
+button{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  width: auto;
+  height: auto;
+  background: rgb(41, 92, 75);
+} 
+
+input{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  width: auto;
+  height: auto;
+  background: rgb(41, 92, 75);
 }
 
-.keyboard-basket {
-  width: 510px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.keyboard-basket button {
-  width: 43px;
-  height: 58px;
-  border-radius: 4px;
-  border: none;
-  background-color: #818384;
-  margin: 4px;
-}
-
-.keyboard-basket button:nth-child(11) {
-  margin-left: 30px;
-}
-
-.keyboard-basket button:nth-child(20),
-.keyboard-basket button:nth-child(28) {
-  width: 68px;
-}
-
-.tile-basket div {
-  display: flex;
-}
-
-.tile-basket .tile {
-  width: 62px;
-  height: 62px;
-  border: 2px solid#3a3a3c;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 2px;
+form{
+  display: block;
+  margin: 10px;
+  width: auto;
 }
