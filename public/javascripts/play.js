@@ -86,12 +86,12 @@ function add_letter(alphabet) {
     }
 }
 
-let word
+let wordle_word
 function get_word() {
-    fetch('http://localhost:3000/word')
+    fetch('http://localhost:8000/word')
         .then(response => response.json())
         .then(json => {
-            word = json.toUpperCase()
+            wordle_word = json.toUpperCase()
         })
         .catch(err => console.log(err))
 }
@@ -106,27 +106,34 @@ function show_message(pop_up_status) {
     setTimeout(() => displayed_message.removeChild(message), 5000)
 }
 
-function row_checker() {
+const row_checker = () => {
     const guess = grid_row[current_row].join('')
     if (current_square > 4) {
-        flip_tile()
-        if (word === guess) {
-            show_message('Awesome!')
-            is_game_over = true
-            return
-        }
-        else {
-            if (current_row >= 5) {
-                is_game_over = true
-                show_message('Game Over, The Word is ' + word)
-                return
-            }
-            else if (current_row < 5) {
-                current_row++
-                current_square = 0
-            }
-        }
-
+        fetch(`http://localhost:8000/check/?word=${guess}`)
+            .then(response => response.json())
+            .then(json => {
+                if (json == 'Entry word not found') {
+                    show_message('INVALID ENTRY')
+                    return
+                } else {
+                    flip_tile()
+                    if (wordle_word == guess) {
+                        show_message('Awesome!')
+                        is_game_over = true
+                        return
+                    } else {
+                        if (current_row >= 5) {
+                            is_game_over = true
+                            show_message('Game Over The Word Is: ' + wordle_word)
+                            return
+                        }
+                        if (current_row < 5) {
+                            current_row++
+                            current_square = 0
+                        }
+                    }
+                }
+            }).catch(err => console.log(err))
     }
 }
 
@@ -137,7 +144,7 @@ keyboard_colour = (key_letter, colour) => {
 
 function flip_tile() {
     const row_squares = document.querySelector('#grid_row_elements-' + current_row).childNodes
-    let word_checker = word
+    let word_checker = wordle_word
     const guesses = []
 
     row_squares.forEach(square => {
@@ -145,7 +152,7 @@ function flip_tile() {
     })
 
     guesses.forEach((guesses, i) => {
-        if (guesses.letter == word[i]) {
+        if (guesses.letter == wordle_word[i]) {
             guesses.colour = 'correct'
             word_checker = word_checker.replace(guesses.letter, '')
         }

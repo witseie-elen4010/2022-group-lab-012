@@ -1,6 +1,7 @@
 var axios = require("axios").default
 var cors = require("cors")
 var express = require('express');
+require('dotenv').config()
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -24,6 +25,7 @@ app.use('/createAcc', indexRouter);
 app.use('/newAcc', indexRouter);
 app.use('/instructions', indexRouter);
 
+// word generatine API
 app.get('/word', (req, res) => {
     const options = {
         method: 'GET',
@@ -31,18 +33,37 @@ app.get('/word', (req, res) => {
         params: { count: '1', wordLength: '5' },
         headers: {
             'X-RapidAPI-Host': 'random-words5.p.rapidapi.com',
-            'X-RapidAPI-Key': '53168676e6mshb88fe001b3eaebap19ee34jsnec49acaf3ae2'
+            'X-RapidAPI-Key': process.env.RAPID_API_KEY
         }
     }
 
     axios.request(options).then((response) => {
         console.log(response.data)
-        res.json(response.data[0])
     }).catch((error) => {
         console.error(error)
     })
 })
 
+//Word checker API
+app.get('/check', (req, res) => {
+    const word = req.query.word
+    const options = {
+        method: 'GET',
+        url: 'https://twinword-word-graph-dictionary.p.rapidapi.com/association/',
+        params: { entry: word },
+        headers: {
+            'X-RapidAPI-Host': 'twinword-word-graph-dictionary.p.rapidapi.com',
+            'X-RapidAPI-Key': process.env.RAPID_API_KEY
+        }
+    }
+
+    axios.request(options).then(function (response) {
+        console.log(response.data);
+        res.json(response.data.result_msg)
+    }).catch(function (error) {
+        console.error(error);
+    })
+})
 
 module.exports = app;
 app.listen(process.env.PORT || 8000)
