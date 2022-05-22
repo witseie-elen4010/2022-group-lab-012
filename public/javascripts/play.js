@@ -1,15 +1,14 @@
 //Code Reference: https://github.com/kubowania/wordle-javascript
-
 const display_square = document.querySelector('.tile-basket')
 const keyboard_keys = document.querySelector('.keyboard-basket')
+const displayed_message = document.querySelector('.message-basket')
 
-//creates a keyboard
+
 const key_alphabets = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
     'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'ENTER',
     'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<<',
 ]
 
-//Creates a grid for playing
 const grid_row = [
     ['', '', '', '', ''],
     ['', '', '', '', ''],
@@ -19,11 +18,14 @@ const grid_row = [
     ['', '', '', '', '']
 ]
 
-
+let current_row = 0
+let current_square = 0
+let is_game_over = false
 
 function board() {
     for (let i = 0; i < grid_row.length; i++) {
         const row_element = document.createElement('div')
+        //row_element.id = i
         row_element.setAttribute('id', 'grid_row_elements-' + i)
         let items = grid_row[i].length
         for (let j = 0; j < items; j++) {
@@ -47,5 +49,3 @@ function keys() {
     }
 }
 keys()
-
-

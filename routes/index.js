@@ -18,4 +18,10 @@ router.get('/createAcc', function(req, res, next) {
 router.get('/newAcc', function(req, res, next) {
   res.sendFile(path.join(__dirname,'../public','welcome.html'))
 });
+
+//get grid and keyboard
+router.get('/play', function(req, res, next) {
+  res.sendFile(path.join(__dirname,'../public','play.html'))
+});
+
 module.exports = router;
