@@ -3,6 +3,8 @@
 <head>
   <title>WELCOME</title>
   <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href ="/stylesheets/ToggleButtonStyle.css">
+
 </head>
 
 <body>
@@ -11,11 +13,23 @@
   <P>
     <h3> WELCOME</h3>
   <br>
-  Please choose player mode to continue
+  Please Choose Time and Game Player Modes to Continue:
   </P>
-  <form id="singlePlayer" name="singlePlayer" action="/play" method="get">
-    <input type="submit" id="singlePlayer" value="Single Player">
-  </form>
+
+  <div class = "Container">
+    <div class ="Toggle">
+        <div class = "Toggle-Button" onclick="ToggleAnimated()"></div>
+    </div>
+    <div class = "Button-Text">UNTIMED-MODE</div>
+  </div>
+
+  <button id="SinglePlayBtn" class="Single-Player">Single-Player</button>
+
+  <div id ="Text">UntimedMode</div>
+  <script src="javascripts/ToggleButton.js"></script>
+  <script src="javascripts/ModeButtons.js"></script>
+
+
 </body>
 
 </html>
