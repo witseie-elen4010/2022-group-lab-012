@@ -98,9 +98,11 @@ body {
 
  }
   
+
 #im {
 
   }
+
   
   #im {
 
@@ -155,7 +157,7 @@ message_tag {
 .correct {
       background-color: #538d4e !important;
       border: none !important;
-=======
+
   .close {
     float: right;
 
