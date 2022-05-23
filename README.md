@@ -8,7 +8,5 @@ Thabo Tshabalala\
 Christina Mathipa\
 Bongekile Mqhakama
 
-
-
 http://localhost:3000
 
