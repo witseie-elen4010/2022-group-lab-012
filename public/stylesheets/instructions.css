@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+  }
+  .Instructions{
+  
+    height: 15vh;
+    display: flex;
+    width: 50%;
+    
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+  
+  }
+  
+  #close {
+    color: #000000;
+    align-self: center;
+  }
+  a:hover {
+       color: #663221;
+  }
+  a:link {
+    background-color: #6d8e8e;
+    border: 2px solid #000000;
+    text-align: center;
+    text-decoration: none;
+    padding: 6px 16px;
+  }
+  
+  .container {
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+   
+  }

@@ -95,13 +95,65 @@ body {
     justify-content: space-between;
     align-items: center;
     font-family: 'Poppins', sans-serif;
-  }
+
+ }
+  
   
   #im {
+
     margin-left: 10%;
     width: 70%;
   }
   
+
+.close {
+    float: right;
+  }
+
+.message-basket {
+      height: 30px;
+  }
+
+message_tag {
+      background-color: #818384;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 0;
+  }
+
+.tile.flip {
+      animation: 0.5s linear flipping;
+  }
+
+@keyframes flipping {
+      0% {
+          transform: rotateX(0deg);
+      }
+
+      50% {
+          transform: rotateX(90deg);
+      }
+
+      100% {
+          transform: rotateX(0deg);
+      }
+  }
+
+.absent {
+      background-color: #3a3a3c !important;
+      border: none !important;
+  }
+
+.pressent {
+      background-color: #b59f3a !important;
+      border: none !important;
+  }
+
+.correct {
+      background-color: #538d4e !important;
+      border: none !important;
+
   .close {
     float: right;
+
   }
