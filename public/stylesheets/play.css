@@ -95,13 +95,22 @@ body {
     justify-content: space-between;
     align-items: center;
     font-family: 'Poppins', sans-serif;
+
  }
   
+
 #im {
+
+  }
+
+  
+  #im {
+
     margin-left: 10%;
     width: 70%;
   }
   
+
 .close {
     float: right;
   }
@@ -148,4 +157,8 @@ message_tag {
 .correct {
       background-color: #538d4e !important;
       border: none !important;
+
+  .close {
+    float: right;
+
   }
