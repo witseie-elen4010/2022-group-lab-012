@@ -24,4 +24,9 @@ router.get('/play', function(req, res, next) {
   res.sendFile(path.join(__dirname,'../public','play.html'))
 });
 
+//get instructions page
+router.get('/instructions', function(req, res, next) {
+  res.sendFile(path.join(__dirname,'../public','/instructions.html'))
+});
+
 module.exports = router;

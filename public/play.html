@@ -4,21 +4,44 @@
 <head>
     <meta charset="utf-8" />
     <title>SpaceWordle</title>
+
     <link rel="stylesheet" href="stylesheets/play.css">
+
+    <link rel="stylesheet" type = "text/css" href="/cdn/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="../public/javascripts/script.js"></script>
+
 
 </head>
 
 <body>
     <div class="game-basket">
+
+
         <div class="title-basket">
             <h1>SpaceWordle</h1>
         </div>
+        
         <div class="message-basket"></div>
+        <div class="tile-basket"></div>
+        <div class="keyboard-basket"></div>
+
+        <form id="Instructions" name="Instructions" action="/instructions" method="get">
+          <input type="submit" id="instructions" value="Instructions" >
+        </form> 
+    </div>
+    <script src="javascripts/play.js"></script>
+
+        <div class="title-basket">
+            <button id="info" class="btn flex "><i class="fa fa-question-circle"></i></button>
+            <a href="instructions.html">Instructions </a>
+            <h1>SpaceWordle</h1>
+        </div>
         <div class="tile-basket"></div>
         <div class="keyboard-basket"></div>
     </div>
 
-    <script src="javascripts/play.js"></script>
+
 </body>
 
 </html>
