@@ -8,6 +8,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var playRouter = require('./routes/play');
 
 var app = express();
 
@@ -20,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 app.use('/play', indexRouter);
 app.use('/createAcc', indexRouter);
 app.use('/newAcc', indexRouter);
@@ -68,4 +70,15 @@ app.get('/check', (req, res) => {
 module.exports = app;
 app.listen(process.env.PORT || 8000)
 console.log('Express server running on port 3000',process.env.PORT || 8000)
+=======
+
+app.use('/createAcc', indexRouter);
+app.use('/newAcc', indexRouter);
+app.use('/play', playRouter);
+
+
+module.exports = app;
+app.listen(3000)
+console.log('Express server running on port 3000')
+
 
