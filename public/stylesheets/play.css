@@ -1,0 +1,107 @@
+* {
+    color: #ffffff;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+    background-color: #121213;
+}
+
+.game-basket {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-basket {
+    text-align: center;
+    width: 510px;
+    border-bottom: solid 1px #3a3a3c;
+}
+
+.title-basket {
+    width: 330px;
+    margin-bottom: 30px;
+}
+
+.keyboard-basket {
+    width: 510px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.keyboard-basket button {
+    width: 43px;
+    height: 58px;
+    border-radius: 4px;
+    border: none;
+    background-color: #818384;
+    margin: 4px;
+}
+
+.keyboard-basket button:nth-child(11) {
+    margin-left: 30px;
+}
+
+.keyboard-basket button:nth-child(20),
+.keyboard-basket button:nth-child(28) {
+    width: 68px;
+}
+
+.tile-basket div {
+    display: flex;
+}
+
+.tile-basket .tile {
+    width: 62px;
+    height: 62px;
+    border: 2px solid#3a3a3c;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+}
+
+.btn {
+    background-color: #26aac7;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid #3a3a3c;
+    font-size: 2.5rem;
+    font-weight: bold;
+
+
+}
+
+.flex {
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.Instructions {
+
+    height: 90vh;
+    display: flex;
+    width: 50%;
+    margin-left: 25%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  #im {
+    margin-left: 10%;
+    width: 70%;
+  }
+  
+  .close {
+    float: right;
+  }
