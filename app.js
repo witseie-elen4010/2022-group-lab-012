@@ -20,7 +20,6 @@ app.use('/users', usersRouter);
 
 app.use('/createAcc', indexRouter);
 app.use('/newAcc', indexRouter);
-=======
 app.use('/play', playRouter);
 
 
