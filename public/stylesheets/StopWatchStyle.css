@@ -1,0 +1,13 @@
+.container {
+    height:50px;
+    width: 100%;
+}
+
+#display{
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+    margin:  0px auto;
+    color: white;
+    
+} 
