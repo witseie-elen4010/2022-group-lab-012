@@ -24,10 +24,12 @@ router.get('/play', function(req, res, next) {
   res.sendFile(path.join(__dirname,'../public','play.html'))
 });
 
+
 //get instructions page
 router.get('/instructions', function(req, res, next) {
   res.sendFile(path.join(__dirname,'../public','/instructions.html'))
 });
+
 
 //get grid and keyboard page
 router.get('/PlaySingleTimed', function(req, res, next) {
@@ -38,9 +40,6 @@ router.get('/PlaySingleTimed', function(req, res, next) {
 router.get('/PlaySingleUntimed', function(req, res, next) {
   res.sendFile(path.join(__dirname,'../public','playUntimed.html'))
 });
-
-
-
 
 
 module.exports = router;

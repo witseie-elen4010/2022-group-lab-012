@@ -50,6 +50,7 @@ function keys() {
 }
 keys()
 
+
 function handle_click(keyboard) {
     if (!is_game_over) {
         if (keyboard === '<<') {
@@ -174,3 +175,4 @@ function flip_tile() {
 
     })
 }
+
