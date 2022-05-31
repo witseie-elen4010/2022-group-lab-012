@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="/stylesheets/style.css">
+  <script src="../public/javascripts/account.js"></script>
   <title>CREATE ACCOUNT</title>
 </head>
 <body>
@@ -10,20 +11,18 @@
 
   <form id="return" name="return" action="/" method="get">
     <input type="submit" id="return" value="Return">
-
-
   </form>
 
 <br>
 
-    <form id="newAcc" name="newAcc" action="/play" method="get" >
+    <form id="newAcc" name="newAcc" action="/play" method="get" onsubmit = "return(validatePassword());">
     <form id="newAcc" name="newAcc" action="/newAcc" method="get" >
-
-
       <br>
       <input type="text" placeholder="Name and Surname" id="username" required>
       <br>
       <input type="password" placeholder="Enter valid password" id="password" required>
+      <br>
+      <span id = "errMessage" style="color:red"> </span>
       <br>
       <input type="submit" id="newAcc" value="Create account">
       
