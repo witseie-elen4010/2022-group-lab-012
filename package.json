@@ -10,11 +10,21 @@
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
-
     "dotenv": "^16.0.1",
     "express": "4.16.4",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.16"
-
-  }
+  },
+  "description": "Gabriella Ndhlovu\\\r Muchaveleli Manjate\\\r Thabo Tshabalala\\\r Christina Mathipa\\\r Bongekile Mqhakama",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/witseie-elen4010/2022-group-lab-012.git"
+  },
+  "author": "Bongekile Mqhakama",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/witseie-elen4010/2022-group-lab-012/issues"
+  },
+  "homepage": "https://github.com/witseie-elen4010/2022-group-lab-012#readme"
 }

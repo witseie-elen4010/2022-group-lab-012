@@ -3,7 +3,6 @@ const display_square = document.querySelector('.tile-basket')
 const keyboard_keys = document.querySelector('.keyboard-basket')
 const displayed_message = document.querySelector('.message-basket')
 
-
 const key_alphabets = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
     'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'ENTER',
     'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<<',
@@ -89,19 +88,18 @@ function add_letter(alphabet) {
 
 let wordle_word
 function get_word() {
-    fetch('http://localhost:8000/word')
+    fetch('http://localhost:3000/word')
         .then(response => response.json())
         .then(json => {
             wordle_word = json.toUpperCase()
         })
         .catch(err => console.log(err))
 }
-
 get_word()
 
 
 function show_message(pop_up_status) {
-    const message = document.createElement('message_tag')
+    const message = document.createElement('p')
     message.textContent = pop_up_status
     displayed_message.append(message)
     setTimeout(() => displayed_message.removeChild(message), 5000)
@@ -110,7 +108,7 @@ function show_message(pop_up_status) {
 const row_checker = () => {
     const guess = grid_row[current_row].join('')
     if (current_square > 4) {
-        fetch(`http://localhost:8000/check/?word=${guess}`)
+        fetch(`http://localhost:3000/check/?word=${guess}`)
             .then(response => response.json())
             .then(json => {
                 if (json == 'Entry word not found') {
