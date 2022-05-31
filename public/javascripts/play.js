@@ -3,6 +3,7 @@ const display_square = document.querySelector('.tile-basket')
 const keyboard_keys = document.querySelector('.keyboard-basket')
 const displayed_message = document.querySelector('.message-basket')
 
+
 const key_alphabets = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
     'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'ENTER',
     'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<<',
@@ -95,11 +96,12 @@ function get_word() {
         })
         .catch(err => console.log(err))
 }
+
 get_word()
 
 
 function show_message(pop_up_status) {
-    const message = document.createElement('p')
+    const message = document.createElement('message_tag')
     message.textContent = pop_up_status
     displayed_message.append(message)
     setTimeout(() => displayed_message.removeChild(message), 5000)
