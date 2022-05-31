@@ -11,6 +11,7 @@
 
   
     <script src="../public/javascripts/script.js"></script>
+    
 
 </head>
 
@@ -18,6 +19,10 @@
 
     <form id="Instructions" name="Instructions" action="/instructions" method="get">
         <input type="submit" id="instructions" value="Instructions" >
+    </form> 
+
+    <form id="Share my game result" name="Share my game result" action="/share" method="get">
+        <input type="submit" id="share" value="Share" >
     </form> 
 
     <div class="game-basket">
@@ -43,6 +48,8 @@
 
     <script src="javascripts/stopwatch.js"></script>
 
+    <script src="javascripts/share_script.js"></script>
+
 
         <div class="title-basket">
 
@@ -52,6 +59,10 @@
       
             <button id="info" class="btn flex "><i class="fa fa-question-circle"></i></button>
             <a href="instructions.html">Instructions </a>
+
+            <button id="share" class="btn flex "><i class="fa fa-question-circle"></i></button>
+            <a href="share.html">Instructions </a>
+
             <h1>SpaceWordle</h1>
         </div>
 

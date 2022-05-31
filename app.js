@@ -29,6 +29,7 @@ app.use('/newAcc', indexRouter);
 app.use('/instructions', indexRouter);
 app.use('/PlaySingleTimed',indexRouter)
 app.use('/PlaySingleUntimed',indexRouter);
+app.use('/Share',indexRouter);
 
 // word generatine API
 app.get('/word', (req, res) => {
@@ -75,16 +76,4 @@ module.exports = app;
 
 app.listen(3000)
 console.log('Express server running on port 3000')
-
-
-
-app.use('/createAcc', indexRouter);
-app.use('/newAcc', indexRouter);
-app.use('/play', playRouter);
-
-
-module.exports = app;
-app.listen(3000)
-console.log('Express server running on port 3000')
-
 
