@@ -90,7 +90,4 @@ server.on('error', (err) => {
 
 //module.exports = app;
 server.listen(3000)
-console.log('Express server running on port 3000')
-
-
-
+console.log('Express server running on port',process.env.PORT || 3000)
