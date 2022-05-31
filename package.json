@@ -12,7 +12,9 @@
     "debug": "~2.6.9",
     "dotenv": "^16.0.1",
     "express": "4.16.4",
+    "kill-all-node-on-windows": "^0.0.4",
     "morgan": "~1.9.1",
+
     "nodemon": "^2.0.16",
     "socket.io": "^4.5.1"
   }
