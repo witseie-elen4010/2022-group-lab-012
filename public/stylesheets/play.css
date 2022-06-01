@@ -97,14 +97,9 @@ body {
     font-family: 'Poppins', sans-serif;
 
  }
-  
 
+  
 #im {
-
-  }
-
-  
-  #im {
 
     margin-left: 10%;
     width: 70%;
@@ -119,7 +114,7 @@ body {
       height: 30px;
   }
 
-message_tag {
+p {
       background-color: #818384;
       border-radius: 10px;
       padding: 10px;
@@ -192,3 +187,4 @@ message_tag {
 #U_background {
   background-color: #9E9E9E;
 }
+

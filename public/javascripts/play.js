@@ -89,7 +89,7 @@ function add_letter(alphabet) {
 
 let wordle_word
 function get_word() {
-    fetch('http://localhost:8000/word')
+    fetch('http://localhost:3000/word')
         .then(response => response.json())
         .then(json => {
             wordle_word = json.toUpperCase()
@@ -110,7 +110,7 @@ function show_message(pop_up_status) {
 const row_checker = () => {
     const guess = grid_row[current_row].join('')
     if (current_square > 4) {
-        fetch(`http://localhost:8000/check/?word=${guess}`)
+        fetch(`http://localhost:3000/check/?word=${guess}`)
             .then(response => response.json())
             .then(json => {
                 if (json == 'Entry word not found') {

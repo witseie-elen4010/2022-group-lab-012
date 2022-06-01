@@ -8,7 +8,6 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var playRouter = require('./routes/play');
 
 var app = express();
 
@@ -29,7 +28,7 @@ app.use('/PlaySingleTimed',indexRouter)
 app.use('/PlaySingleUntimed',indexRouter);
 app.use('/lobby',indexRouter)
 
-// word generatine API
+// Generate Wordle word
 app.get('/word', (req, res) => {
     const options = {
         method: 'GET',
@@ -43,6 +42,7 @@ app.get('/word', (req, res) => {
 
     axios.request(options).then((response) => {
         console.log(response.data)
+        res.json(response.data[0])
     }).catch((error) => {
         console.error(error)
     })
@@ -62,14 +62,16 @@ app.get('/check', (req, res) => {
     }
 
     axios.request(options).then(function (response) {
-        console.log(response.data);
+        console.log(response.data)
         res.json(response.data.result_msg)
     }).catch(function (error) {
-        console.error(error);
+        console.error(error)
     })
 })
 
 module.exports = app;
 
+
 app.listen(3000)
 console.log('Express server running on port 3000')
+
