@@ -69,5 +69,8 @@ app.get('/check', (req, res) => {
 })
 
 module.exports = app;
+
+
 app.listen(3000)
 console.log('Express server running on port 3000')
+
