@@ -41,5 +41,15 @@ router.get('/PlaySingleUntimed', function(req, res, next) {
   res.sendFile(path.join(__dirname,'../public','playUntimed.html'))
 });
 
+//get shareable link
+router.get('/Share', function(req, res, next) {
+  res.sendFile(path.join(__dirname,'../public','share.html'))
+});
+
+//get lobby page
+router.get('/lobby', function(req, res, next) {
+  res.sendFile(path.join(__dirname,'../public','Lobby.html'))
+});
+
 
 module.exports = router;
