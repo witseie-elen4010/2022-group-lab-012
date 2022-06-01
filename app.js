@@ -27,12 +27,13 @@ app.use('/newAcc', indexRouter);
 app.use('/instructions', indexRouter);
 app.use('/PlaySingleTimed',indexRouter)
 app.use('/PlaySingleUntimed',indexRouter);
+app.use('/lobby',indexRouter)
+
 
 //Refracting router handler
 app.get('/', (req, res) =>{
     res.sendFile(__dirname + '/play.html')
 })
-
 // Generate Wordle word
 app.get('/word', (req, res) => {
     const options = {
@@ -87,6 +88,7 @@ io.on('connection', (socket) =>{
 server.on('error', (err) => {
     console.error(err)
 })
+
 
 app.listen(3000)
 console.log('Express server running on port 3000')
