@@ -1,14 +1,14 @@
 var axios = require("axios").default
 var cors = require("cors")
 var express = require('express');
-require('dotenv').config()
+const http = require('http')
+const socketio = require('socket.io')
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+require('dotenv').config()
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var playRouter = require('./routes/play');
 
 var app = express();
 
@@ -27,8 +27,14 @@ app.use('/newAcc', indexRouter);
 app.use('/instructions', indexRouter);
 app.use('/PlaySingleTimed',indexRouter)
 app.use('/PlaySingleUntimed',indexRouter);
+app.use('/Share',indexRouter);
+app.use('/lobby',indexRouter)
 
-// word generatine API
+//Refracting router handler
+app.get('/', (req, res) =>{
+    res.sendFile(__dirname + '/play.html')
+})
+// Generate Wordle word
 app.get('/word', (req, res) => {
     const options = {
         method: 'GET',
@@ -42,10 +48,12 @@ app.get('/word', (req, res) => {
 
     axios.request(options).then((response) => {
         console.log(response.data)
+        res.json(response.data[0])
     }).catch((error) => {
         console.error(error)
     })
 })
+
 
 //Word checker API
 app.get('/check', (req, res) => {
@@ -61,14 +69,27 @@ app.get('/check', (req, res) => {
     }
 
     axios.request(options).then(function (response) {
-        console.log(response.data);
+        console.log(response.data)
         res.json(response.data.result_msg)
     }).catch(function (error) {
-        console.error(error);
+        console.error(error)
     })
 })
 
-module.exports = app;
+const server = http.createServer(app)
+const io = socketio(server)
+
+io.on('connection', (socket) =>{
+    console.log('connected')
+    socket.on('turn', (click) => io.emit('turn', click))
+    socket.on('feedback', (colour_change) => io.emit('feedback', colour_change))
+})
+
+server.on('error', (err) => {
+    console.error(err)
+})
+
 
 app.listen(3000)
 console.log('Express server running on port 3000')
+

@@ -3,10 +3,12 @@
 
 <head>
     <meta charset="utf-8" />
+
     <title>SpaceWordle</title>
     <link rel="stylesheet" href="stylesheets/play.css">
     <link rel="stylesheet" href="stylesheets/StopWatchStyle.css">
     <script src="../public/javascripts/script.js"></script>
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,10 +18,10 @@
     <link rel="stylesheet" href="../public/stylesheets/play.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
-
 </head>
 
 <body class="bg-black">
+
 
     <header class="d-flex justify-content-between mb-0">
         <section>
@@ -31,24 +33,57 @@
        
       </header>
 
+    <form id="Share my game result" name="Share my game result" action="/share" method="get">
+        <input type="submit" id="share" value="Share" >
+    </form> 
+
     <div class="game-basket">
-
-
+        
         <div class="title-basket">
             <h1>SpaceWordle</h1>
+            <br>
+            <a href="instructions.html">Instructions </a>
         </div>
 
         <div class="container">
             <div id="display">
                 00:00:00
             </div>
-         </div>
-        
+        </div>
+
         <div class="message-basket"></div>
         <div class="tile-basket"></div>
         <div class="keyboard-basket"></div>
 
     </div>
+
+
+
+    
+
+    <script src="javascripts/share_script.js"></script>
+
+
+        <div class="title-basket">
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="javascripts/play.js"></script>
+    <script src="javascripts/stopwatch.js"></script>
+
+
+
+            <h1>SpaceWordle</h1>
+        </div>
+        <div class="message-basket"></div>
+      
+            <button id="info" class="btn flex "><i class="fa fa-question-circle"></i></button>
+            <a href="instructions.html">Instructions </a>
+
+            <button id="share" class="btn flex "><i class="fa fa-question-circle"></i></button>
+            <a href="share.html">Instructions </a>
+
+            <h1>SpaceWordle</h1>
+        </div>
 
 
    <!-- Instructions -->
@@ -118,10 +153,5 @@
      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
      crossorigin="anonymous"></script>
 
-   <script src="javascripts/play.js"></script>
-  <script src="javascripts/stopwatch.js"></script>
-
-
 </body>
-
 </html>
