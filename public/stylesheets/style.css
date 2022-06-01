@@ -106,3 +106,37 @@ body{
  color:rgb(0, 10, 102);
  background-color:rgb(26, 212, 9);
 }
+
+.Multi-Player{
+  position:absolute;
+  top: 45%;
+  left: 51%;
+  height: 50%;
+  transform: translate(-60%,-20%);
+  height: 40px;
+  width: 100px;
+  color:rgb(249, 253, 5);
+  border-radius: 30px;
+ }
+ 
+ .Multi-Player:hover {
+  color:rgb(245, 7, 98);
+  background-color:rgb(97, 255, 5);
+ }
+
+ .Play{
+  position:absolute;
+  top: 45%;
+  left: 51%;
+  height: 50%;
+  transform: translate(-60%,-20%);
+  height: 40px;
+  width: 100px;
+  color:rgb(249, 253, 5);
+  border-radius: 30px;
+ }
+ 
+ .Play:hover {
+  color:rgb(245, 7, 98);
+  background-color:rgb(97, 255, 5);
+ }

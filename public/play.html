@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
+
     <title>SpaceWordle</title>
     <link rel="stylesheet" href="stylesheets/play.css">
     <link rel="stylesheet" href="stylesheets/StopWatchStyle.css">
@@ -21,6 +22,7 @@
 
 <body class="bg-black">
 
+
     <header class="d-flex justify-content-between mb-0">
         <section>
 
@@ -35,32 +37,40 @@
     </form> 
 
     <div class="game-basket">
-
-
+        
         <div class="title-basket">
             <h1>SpaceWordle</h1>
+            <br>
+            <a href="instructions.html">Instructions </a>
         </div>
 
         <div class="container">
             <div id="display">
                 00:00:00
             </div>
-         </div>
-        
+        </div>
+
         <div class="message-basket"></div>
         <div class="tile-basket"></div>
         <div class="keyboard-basket"></div>
 
     </div>
 
-    <script src="javascripts/play.js"></script>
 
-    <script src="javascripts/stopwatch.js"></script>
+    
+
+    
 
     <script src="javascripts/share_script.js"></script>
 
 
         <div class="title-basket">
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="javascripts/play.js"></script>
+    <script src="javascripts/stopwatch.js"></script>
+
+
 
             <h1>SpaceWordle</h1>
         </div>
@@ -143,10 +153,5 @@
      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
      crossorigin="anonymous"></script>
 
-   <script src="javascripts/play.js"></script>
-  <script src="javascripts/stopwatch.js"></script>
-
-
 </body>
-
 </html>
