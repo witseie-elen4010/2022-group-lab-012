@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="stylesheets/play.css">
     <link rel="stylesheet" href="stylesheets/StopWatchStyle.css">
     <script src="../public/javascripts/script.js"></script>
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,6 +32,10 @@
        
       </header>
 
+    <form id="Share my game result" name="Share my game result" action="/share" method="get">
+        <input type="submit" id="share" value="Share" >
+    </form> 
+
     <div class="game-basket">
         
         <div class="title-basket">
@@ -51,11 +56,34 @@
 
     </div>
 
+
+    
+
+    
+
+    <script src="javascripts/share_script.js"></script>
+
+
+        <div class="title-basket">
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="javascripts/play.js"></script>
     <script src="javascripts/stopwatch.js"></script>
 
 
+
+            <h1>SpaceWordle</h1>
+        </div>
+        <div class="message-basket"></div>
+      
+            <button id="info" class="btn flex "><i class="fa fa-question-circle"></i></button>
+            <a href="instructions.html">Instructions </a>
+
+            <button id="share" class="btn flex "><i class="fa fa-question-circle"></i></button>
+            <a href="share.html">Instructions </a>
+
+            <h1>SpaceWordle</h1>
+        </div>
 
    <!-- Instructions -->
    <hr class="p-0 mt-0 me-2" id="primary_color">

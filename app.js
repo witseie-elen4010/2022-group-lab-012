@@ -27,8 +27,8 @@ app.use('/newAcc', indexRouter);
 app.use('/instructions', indexRouter);
 app.use('/PlaySingleTimed',indexRouter)
 app.use('/PlaySingleUntimed',indexRouter);
+app.use('/Share',indexRouter);
 app.use('/lobby',indexRouter)
-
 
 //Refracting router handler
 app.get('/', (req, res) =>{

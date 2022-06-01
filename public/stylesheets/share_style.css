@@ -1,0 +1,29 @@
+/* #Reference: https://github.com/mariofornaroli/y-share-button-share-api */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right top, #e7efec, #f3f5ee);
+
+}
+
+button {
+    background-color: #489834;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 10px 10px 14px 1px rgb(0 0 0 / 20%);
+    padding: 0.8em 2em;
+    font-size: 1.5em;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+
