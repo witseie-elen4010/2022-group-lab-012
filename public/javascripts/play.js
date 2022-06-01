@@ -3,7 +3,6 @@ const display_square = document.querySelector('.tile-basket')
 const keyboard_keys = document.querySelector('.keyboard-basket')
 const displayed_message = document.querySelector('.message-basket')
 
-
 const key_alphabets = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
     'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'ENTER',
     'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<<',
@@ -21,6 +20,8 @@ const grid_row = [
 let current_row = 0
 let current_square = 0
 let is_game_over = false
+let is_enter_clicked = true
+let is_multiplayer = true
 
 function board() {
     for (let i = 0; i < grid_row.length; i++) {
@@ -57,33 +58,36 @@ function handle_click(keyboard) {
             delete_letter()
             return
         }
+
         if (keyboard === 'ENTER') {
             row_checker()
+            is_enter_clicked = false
             return
         }
+
         add_letter(keyboard)
     }
 }
 
+
+
 function delete_letter() {
-    while (current_square > 0) {
+    if (current_square > 0) {
         current_square--
         const square = document.getElementById('grid_row_elements-' + current_row + '-tile-' + current_square)
         square.textContent = ''
         grid_row[current_row][current_square] = ''
         square.setAttribute('data', '')
-        break
     }
 }
 
 function add_letter(alphabet) {
-    while (current_square < 5 && current_row < 6) {
+    if (current_square < 5 && current_row < 6) {
         const square = document.getElementById('grid_row_elements-' + current_row + '-tile-' + current_square)
         square.textContent = alphabet
         grid_row[current_row][current_square] = alphabet
         square.setAttribute('data', alphabet)
         current_square++
-        break
     }
 }
 
@@ -97,14 +101,14 @@ function get_word() {
         .catch(err => console.log(err))
 }
 
-get_word()
+//get_word()
 
 
 function show_message(pop_up_status) {
-    const message = document.createElement('message_tag')
+    const message = document.createElement('p')
     message.textContent = pop_up_status
     displayed_message.append(message)
-    setTimeout(() => displayed_message.removeChild(message), 5000)
+    setTimeout(() => displayed_message.removeChild(message), 2000)
 }
 
 const row_checker = () => {
@@ -116,21 +120,24 @@ const row_checker = () => {
                 if (json == 'Entry word not found') {
                     show_message('INVALID ENTRY')
                     return
-                } else {
+                }
+                else {
                     flip_tile()
                     if (wordle_word == guess) {
                         show_message('Awesome!')
                         is_game_over = true
                         return
-                    } else {
+                    }
+                    else {
                         if (current_row >= 5) {
                             is_game_over = true
                             show_message('Game Over The Word Is: ' + wordle_word)
                             return
                         }
-                        if (current_row < 5) {
+                        else if (current_row < 5) {
                             current_row++
                             current_square = 0
+                            return
                         }
                     }
                 }
@@ -138,9 +145,9 @@ const row_checker = () => {
     }
 }
 
-keyboard_colour = (key_letter, colour) => {
-    const key = document.getElementById(key_letter)
-    key.classList.add(colour)
+const keyboard_colour = (key_letter, colour) => {
+    var key_alphabets = document.getElementById(key_letter)
+    key_alphabets.classList.add(colour)
 }
 
 function flip_tile() {
@@ -166,13 +173,25 @@ function flip_tile() {
         }
     })
 
-    row_squares.forEach((square, i) => {
-        setTimeout(() => {
-            square.classList.add('flip')
-            square.classList.add(guesses[i].colour)
-            keyboard_colour(guesses[i].letter, guesses[i].colour)
-        }, 400 * i)
-
-    })
+    if (!is_enter_clicked) {
+        row_squares.forEach((square, i) => {
+            setTimeout(() => {
+                square.classList.add('flip')
+                square.classList.add(guesses[i].colour)
+                keyboard_colour(guesses[i].letter, guesses[i].colour)
+            }, 400 * i)
+        })
+        return
+    }
 }
 
+(()=>{
+    if(is_multiplayer){
+    get_word()
+    //var keyboard
+    const socket = io()
+    const click = flip_tile()
+    socket.emit('turn', click) 
+}
+socket.on('turn', click)
+})()

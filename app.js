@@ -1,11 +1,12 @@
 var axios = require("axios").default
 var cors = require("cors")
 var express = require('express');
-require('dotenv').config()
+const http = require('http')
+const socketio = require('socket.io')
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+require('dotenv').config()
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -28,6 +29,11 @@ app.use('/PlaySingleTimed',indexRouter)
 app.use('/PlaySingleUntimed',indexRouter);
 app.use('/lobby',indexRouter)
 
+
+//Refracting router handler
+app.get('/', (req, res) =>{
+    res.sendFile(__dirname + '/play.html')
+})
 // Generate Wordle word
 app.get('/word', (req, res) => {
     const options = {
@@ -47,6 +53,7 @@ app.get('/word', (req, res) => {
         console.error(error)
     })
 })
+
 
 //Word checker API
 app.get('/check', (req, res) => {
@@ -69,7 +76,18 @@ app.get('/check', (req, res) => {
     })
 })
 
-module.exports = app;
+const server = http.createServer(app)
+const io = socketio(server)
+
+io.on('connection', (socket) =>{
+    console.log('connected')
+    socket.on('turn', (click) => io.emit('turn', click))
+    socket.on('feedback', (colour_change) => io.emit('feedback', colour_change))
+})
+
+server.on('error', (err) => {
+    console.error(err)
+})
 
 
 app.listen(3000)

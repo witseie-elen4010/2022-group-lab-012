@@ -16,6 +16,8 @@
     "morgan": "~1.9.1",
     "nodemon": "^2.0.16",
     "socket.io": "^4.5.1"
+  }
+
   },
   "description": "Gabriella Ndhlovu\\\r Muchaveleli Manjate\\\r Thabo Tshabalala\\\r Christina Mathipa\\\r Bongekile Mqhakama",
   "main": "app.js",
