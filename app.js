@@ -27,6 +27,7 @@ app.use('/newAcc', indexRouter);
 app.use('/instructions', indexRouter);
 app.use('/PlaySingleTimed',indexRouter)
 app.use('/PlaySingleUntimed',indexRouter);
+app.use('/lobby',indexRouter)
 
 // word generatine API
 app.get('/word', (req, res) => {

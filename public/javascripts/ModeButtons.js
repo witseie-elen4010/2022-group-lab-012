@@ -6,6 +6,7 @@ function Redirect(url)
 }
 
 LoadToSinglePlayerUntimed()
+WaitInlobby()
 function LoadToSinglePlayertimed () {
 
   if (ToggleState.innerHTML === 'TimedMode') {
@@ -27,6 +28,13 @@ function LoadToSinglePlayerUntimed () {
     window.location = '/PlaySingleUntimed'
     }, false)
   }
+}
 
+function WaitInlobby() {
+    
+    const MultiPlayerbutton = document.getElementById('MultiPlayBtn')
+    MultiPlayerbutton.addEventListener('click', function myFunction () {
+    window.location = '/lobby'
+    }, false)
 }
 
