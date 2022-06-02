@@ -1,5 +1,4 @@
-//Code Reference: https://github.com/kubowania/wordle-javascript
-
+/*Code Reference: https://github.com/kubowania/wordle-javascript
 const display_square = document.querySelector('.tile-basket')
 const keyboard_keys = document.querySelector('.keyboard-basket')
 
@@ -48,4 +47,4 @@ function keys() {
 }
 keys()
 
-
+*/
