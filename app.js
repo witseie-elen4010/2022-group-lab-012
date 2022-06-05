@@ -1,23 +1,39 @@
-var axios = require("axios").default
+'use strict'
+var axios = require("axios").default;
+const mongoose = require('mongoose');
 var cors = require("cors")
-var express = require('express');
+const express = require('express');
 const http = require('http')
 const socketio = require('socket.io')
 var path = require('path');
+const bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('dotenv').config()
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var app = express();
+const app = express();
+
+mongoose.connect('mongodb+srv://SpaceWordle:spacEworDle22@cluster0.ctu0b.mongodb.net/?retryWrites=true&w=majority',{
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
+let db = mongoose.connection;
+db.on('error',()=>console.log("Error in Connecting to Database"));
+db.once('open',()=>console.log("Connected to Database"))
 
 app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+//app.use(bodyParser.json())
+//app.use(bodyParser.urlencoded({
+ //   extended: true
+//}))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -29,6 +45,48 @@ app.use('/PlaySingleTimed',indexRouter)
 app.use('/PlaySingleUntimed',indexRouter);
 app.use('/Share',indexRouter);
 app.use('/lobby',indexRouter)
+
+//let userSchema = new mongoose.Schema({
+    //username: String,
+    //password: String
+//});
+
+//let User = mongoose.model("User", userSchema);
+//User.create(
+  //  {
+    //    username: "Thabo",
+      //  password: "ThisIsaPassword"
+    //}, function(err, user){
+      //  if(err){
+        //    console.log(err); 
+        //} else {
+          //  console.log("NEWLY LOGGED IN USER: ");
+            //console.log(user);
+        //}
+    //}
+//);
+
+//Getting username and password
+app.post("/createAcc", (req, res)=>{
+    
+    let username = (req.body.username);
+    let password = (req.body.password);
+    let newUser = {
+     "username" : username,
+     "password" : password
+    }
+    
+    db.collection('users').insertOne(newUser,(err,collection)=>{
+            if(err){
+               throw err 
+            }   
+            console.log("User inserted succesfully:");
+    });
+    //res.send('Data received:\n' + JSON.stringify(req.body));
+          return res.redirect("welcome.html")  
+
+});
+
 
 //Refracting router handler
 app.get('/', (req, res) =>{
@@ -88,7 +146,6 @@ io.on('connection', (socket) =>{
 server.on('error', (err) => {
     console.error(err)
 })
-
 
 app.listen(3000)
 console.log('Express server running on port 3000')
