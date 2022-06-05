@@ -4,14 +4,19 @@ const ToggleStatus = document.getElementById('Text')
 
 LoadToSinglePlayerUntimed()
 function ToggleAnimated () {
+
   Toggle.classList.toggle('active')
+
   if (Toggle.classList.contains('active') === true) {
     Text.innerHTML = 'TIMED-MODE'
     ToggleStatus.innerHTML = 'TimedMode'
     LoadToSinglePlayertimed()
-  } else {
+  }   
+  else {
     Text.innerHTML = 'UNTIMED-MODE'
     ToggleStatus.innerHTML = 'UntimedMode'
     LoadToSinglePlayerUntimed()
+
   }
+
 }

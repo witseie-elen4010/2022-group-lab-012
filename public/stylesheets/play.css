@@ -97,14 +97,9 @@ body {
     font-family: 'Poppins', sans-serif;
 
  }
-  
 
+  
 #im {
-
-  }
-
-  
-  #im {
 
     margin-left: 10%;
     width: 70%;
@@ -119,7 +114,7 @@ body {
       height: 30px;
   }
 
-message_tag {
+p {
       background-color: #818384;
       border-radius: 10px;
       padding: 10px;
@@ -157,8 +152,39 @@ message_tag {
 .correct {
       background-color: #538d4e !important;
       border: none !important;
+}
 
-  .close {
+.close {
     float: right;
 
   }
+
+  /* modal styling */
+
+  
+#main-content {
+  margin-left : auto;
+  margin-right : auto;
+}
+
+#Icon {
+  color: #edc513;
+   background-color: black;
+}
+
+#primary_color {
+  color: #dcdcdc;
+}
+
+#W_background{
+  background-color: #66BB6A;
+}
+
+#I_background {
+  background-color: #FFF176;
+}
+
+#U_background {
+  background-color: #9E9E9E;
+}
+
