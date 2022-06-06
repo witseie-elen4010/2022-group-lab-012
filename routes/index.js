@@ -52,6 +52,16 @@ router.get('/lobby', function(req, res, next) {
   res.sendFile(path.join(__dirname,'../public','Lobby.html'))
 });
 
+//get sigin page
+router.get('/signin', function(req, res, next) {
+  res.sendFile(path.join(__dirname,'../public','signin.html'))
+});
+
+//get sigup page
+router.get('/signup', function(req, res, next) {
+  res.sendFile(path.join(__dirname,'../public','signup.html'))
+});
+
 // Database API
 router.post('/login', controller.signup)
 router.get('/login', controller.signin)
