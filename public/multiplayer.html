@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>SpaceWordle</title>
+    <link rel="stylesheet" href="stylesheets/multiplayer.css">
+    <link rel="stylesheet" href="stylesheets/StopWatchStyle.css">
+    <script src="../public/javascripts/script.js"></script>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="../public/javascripts/multiplayer.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="../public/stylesheets/multiplayer.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+
+</head>
+
+<body class="bg-black">
+
+
+    <header class="d-flex justify-content-between mb-0">
+        <section>
+
+          <button type="button" class="bi bi-question-circle pt-0 py-0 ps-1 pb-1" name="instructions" id="Icon"
+
+            style="font-size: 1.3rem;" data-bs-toggle="modal" data-bs-target="#InstructionsModal"></button>
+        </section>
+        <form id="Share my game result" name="Share my game result" action="/share" method="get">
+          <input type="submit" id="share" value="Share" >
+        </form> 
+      </header>
+
+    
+
+    <div class="game-basket">
+        
+        <div class="title-basket">
+            <h1>SpaceWordle</h1>
+           
+        </div>
+
+        <div class="container">
+            <div id="display">
+                00:00:00
+            </div>
+        </div>
+       
+   <div class="basketContainer" > 
+    <h3 id="i2">Player </h3> 
+    <div class="tile-basket" id="div1"></div>
+    <h3 id = "i1">Opponent</h3> 
+    <div class="opponent-basket" id="div2"></div>
+    
+  </div> 
+ 
+   <div class="message-basket"></div>
+ <div>
+  <div class="keyboard-basket"></div>
+ </div> 
+ 
+  <input type="text" id="guess_word"> <button id="subBut">submit</button>
+
+
+    </div>
+    <script src="javascripts/share_script.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="javascripts/multiplayer.js"></script>
+    <script src="javascripts/stopwatch.js"></script>
+
+   <!-- Instructions -->
+   <hr class="p-0 mt-0 me-2" id="primary_color">
+
+   <div class="modal fade" id="InstructionsModal" tabindex="-1" aria-labelledby="InstructionsModalLabel"
+     aria-hidden="false">
+     <div class="modal-dialog modal-fullscreen">
+       <div class="modal-content bg-black align-self-center w-75  align-items-center pt-5" id="main-content"">
+             <div class=" modal-header bg-black fw-bold fs-5" id="primary_color">
+         <p class="m-auto">HOW TO PLAY</p>
+         <button type="button" class="btn-close" id="Icon" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body bg-black" id="primary_color">
+         <p>Guess the <span class="fw-bold">WORDLE</span> in six tries.</p>
+ 
+         <p class="py-0 my-1">Each guess must be a valid five-letter word. Hit the enter button to submit.</p>
+ 
+         <p class="py-0">After each guess, the color of the tiles will changes to show how close your guess was to the
+           word.</p>
+ 
+         <hr>
+ 
+         <p class="fw-bold">Examples</p>
+ 
+         <p class="fs-1 fw-bold">
+           <span id="W_background" class="border border-secondary px-2">W</span>
+           <span class="border border-secondary px-3">E</span>
+           <span class="border border-secondary px-3">A</span>
+           <span class="border border-secondary px-3">R</span>
+           <span class="border border-secondary px-3">Y</span>
+         </p>
+ 
+         <p>The letter <span class="fw-bold">W</span> is in the word and in the correct spot.</p>
+ 
+         <p class="fs-1 fw-bold">
+           <span class="border border-secondary px-3">P</span>
+           <span id="I_background" class="border border-secondary px-4">I</span>
+           <span class="border border-secondary px-3">L</span>
+           <span class="border border-secondary px-3">L</span>
+           <span class="border border-secondary px-3">S</span>
+         </p>
+ 
+         <p>The letter <span class="fw-bold">I</span> is in the word but in the wrong spot.</p>
+ 
+         <p class="fs-1 fw-bold">
+           <span class="border border-secondary px-3">V</span>
+           <span class="border border-secondary px-3">A</span>
+           <span class="border border-secondary px-3">G</span>
+           <span id="W_background" class="border border-secondary px-3 ">U</span>
+           <span class="border border-secondary px-3">E</span>
+         </p>
+ 
+         <p>The letter <span class="fw-bold">U</span> is not in the word in any spot.</p>
+ 
+         <hr>
+ 
+         <section class="fw-bold">
+           <p>A new WORDLE will be available each day on the single player mode!</p>
+         </section>
+       </div>
+     </div>
+   </div>
+   </div>
+ 
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+     crossorigin="anonymous"></script>
+
+</body>
+</html>
