@@ -4,7 +4,7 @@
 }
 
 body {
-    background-color: #121213;
+  background-image:url('../images/twinkling-stars-gif-6.gif');
 }
 
 .game-basket {
@@ -63,6 +63,8 @@ body {
     justify-content: center;
     align-items: center;
     margin: 2px;
+    font-size: larger;
+    font-weight: bolder;
 }
 
 .btn {

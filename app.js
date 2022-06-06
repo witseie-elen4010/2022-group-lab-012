@@ -15,15 +15,18 @@ var usersRouter = require('./routes/users');
 
 const app = express();
 
+//Access the database
 mongoose.connect('mongodb+srv://SpaceWordle:spacEworDle22@cluster0.ctu0b.mongodb.net/?retryWrites=true&w=majority',{
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 
+//Connection error handler
 let db = mongoose.connection;
 db.on('error',()=>console.log("Error in Connecting to Database"));
 db.once('open',()=>console.log("Connected to Database"))
 
+//Expose server and database middleware
 app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
@@ -35,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
  //   extended: true
 //}))
 
+// Access API routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/play', indexRouter);
@@ -66,7 +70,7 @@ app.use('/lobby',indexRouter)
     //}
 //);
 
-//Getting username and password
+//Getting username and password into the database
 app.post("/createAcc", (req, res)=>{
     
     let username = (req.body.username);
@@ -92,6 +96,7 @@ app.post("/createAcc", (req, res)=>{
 app.get('/', (req, res) =>{
     res.sendFile(__dirname + '/play.html')
 })
+
 // Generate Wordle word
 app.get('/word', (req, res) => {
     const options = {
@@ -134,6 +139,7 @@ app.get('/check', (req, res) => {
     })
 })
 
+//Multiplayer socket connection
 const server = http.createServer(app)
 const io = socketio(server)
 
