@@ -8,7 +8,6 @@ Thabo Tshabalala\
 Christina Mathipa\
 Bongekile Mqhakama
 
-
-http://localhost:3000
+SpaceWordle played at: https://spacewordle.azurewebsites.net
 
 
