@@ -11,7 +11,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to right top, #e7efec, #f3f5ee);
+    background-image:url('../images/twinkling-stars-gif-6.gif');
 
 }
 
