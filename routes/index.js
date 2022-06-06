@@ -3,6 +3,8 @@ var express = require('express');
 const path = require('path');
 var router = express.Router();
 
+const controller = require('../server/controller')
+
 // GET home page.
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'SPACEWORDLE' });
@@ -50,5 +52,9 @@ router.get('/lobby', function(req, res, next) {
   res.sendFile(path.join(__dirname,'../public','Lobby.html'))
 });
 
+// Database API
+router.post('/login', controller.signup)
+router.get('/login', controller.signin)
+router.post('/login/:id', controller.delete)
 
 module.exports = router;
