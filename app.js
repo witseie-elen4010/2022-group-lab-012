@@ -1,6 +1,7 @@
 'use strict'
 var axios = require("axios").default;
 const mongoose = require('mongoose');
+const {model,Schema} = require('mongoose');
 var cors = require("cors")
 const express = require('express');
 const http = require('http')
@@ -15,18 +16,15 @@ var usersRouter = require('./routes/users');
 
 const app = express();
 
-//Access the database
 mongoose.connect('mongodb+srv://SpaceWordle:spacEworDle22@cluster0.ctu0b.mongodb.net/?retryWrites=true&w=majority',{
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 
-//Connection error handler
 let db = mongoose.connection;
 db.on('error',()=>console.log("Error in Connecting to Database"));
 db.once('open',()=>console.log("Connected to Database"))
 
-//Expose server and database middleware
 app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
@@ -38,7 +36,6 @@ app.use(express.static(path.join(__dirname, 'public')));
  //   extended: true
 //}))
 
-// Access API routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/play', indexRouter);
@@ -46,31 +43,36 @@ app.use('/createAcc', indexRouter);
 app.use('/newAcc', indexRouter);
 app.use('/instructions', indexRouter);
 app.use('/PlaySingleTimed',indexRouter)
-app.use('/PlaySingleUntimed',indexRouter);
 app.use('/Share',indexRouter);
 app.use('/lobby',indexRouter)
 
-//let userSchema = new mongoose.Schema({
-    //username: String,
-    //password: String
-//});
+ let userSchema = new mongoose.Schema({
+    username: String,
+    password: String
+});
 
-//let User = mongoose.model("User", userSchema);
-//User.create(
-  //  {
-    //    username: "Thabo",
-      //  password: "ThisIsaPassword"
-    //}, function(err, user){
-      //  if(err){
-        //    console.log(err); 
-        //} else {
-          //  console.log("NEWLY LOGGED IN USER: ");
-            //console.log(user);
-        //}
-    //}
-//);
+let User = mongoose.model("player", userSchema);
 
-//Getting username and password into the database
+ let gameModeSchema = new mongoose.Schema({
+    Mode: String,
+    User: { type: Schema.Types.ObjectId, ref: 'User'}
+ })
+
+ 
+let GameMode = mongoose.model('GameMode', gameModeSchema);
+
+
+GameMode.create( {}, function(err, user){
+    if(err){
+       console.log(err); 
+    } else {
+        console.log("NEWLY LOGGED IN USER: ");
+        console.log(user);
+    }
+  })
+
+
+//Getting username and password
 app.post("/createAcc", (req, res)=>{
     
     let username = (req.body.username);
@@ -80,23 +82,32 @@ app.post("/createAcc", (req, res)=>{
      "password" : password
     }
     
-    db.collection('users').insertOne(newUser,(err,collection)=>{
+    User.create(newUser, function(err, user){
             if(err){
-               throw err 
-            }   
-            console.log("User inserted succesfully:");
-    });
+               console.log(err); 
+            } else {
+                console.log("NEWLY LOGGED IN USER: ");
+                console.log(user);
+            }
+        }
+   ) ;
+   
     //res.send('Data received:\n' + JSON.stringify(req.body));
           return res.redirect("welcome.html")  
-
 });
 
+
+//db.collection('users').insertOne(,(err,collection)=>{
+  //  if(err){
+    //   throw err 
+    //}   
+    //console.log("User inserted succesfully:");
+//});
 
 //Refracting router handler
 app.get('/', (req, res) =>{
     res.sendFile(__dirname + '/play.html')
 })
-
 // Generate Wordle word
 app.get('/word', (req, res) => {
     const options = {
@@ -139,7 +150,6 @@ app.get('/check', (req, res) => {
     })
 })
 
-//Multiplayer socket connection
 const server = http.createServer(app)
 const io = socketio(server)
 
@@ -147,12 +157,17 @@ io.on('connection', (socket) =>{
     console.log('connected')
     socket.on('turn', (click) => io.emit('turn', click))
     socket.on('feedback', (colour_change) => io.emit('feedback', colour_change))
+
+    socket.on('FromGameMode',function(data){
+       console.log('Recieved Data from client')
+    }) 
+    
 })
 
 server.on('error', (err) => {
     console.error(err)
 })
 
+
 app.listen(3000)
 console.log('Express server running on port 3000')
-

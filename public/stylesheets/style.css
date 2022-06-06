@@ -90,7 +90,7 @@ form{
  top: 100%;
  left: 10%;
  height: 50%;
- transform: translate(13%,50%);
+ transform: translate(450%,-800%);
  height: 40px;
  width: 100px;
  color:rgb(190, 10, 245);
@@ -107,7 +107,7 @@ form{
   top: 60%;
   left: 50%;
   height: 60%;
-  transform: translate(13%,300%);
+  transform: translate(-50%,-500%);
   height: 40px;
   width: 100px;
   color:rgb(249, 253, 5);

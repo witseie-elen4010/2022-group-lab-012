@@ -1,4 +1,4 @@
-const Toggle = document.querySelector('.Toggle')
+/*const Toggle = document.querySelector('.Toggle')
 const Text = document.querySelector('.Button-Text')
 const ToggleStatus = document.getElementById('Text')
 
@@ -19,4 +19,4 @@ function ToggleAnimated () {
 
   }
 
-}
+}*/
