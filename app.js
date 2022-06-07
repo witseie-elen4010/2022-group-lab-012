@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const {model,Schema} = require('mongoose');
 var cors = require("cors")
 const express = require('express');
-const http = require('http')
-const socketio = require('socket.io')
+const http = require('http');
+const socket_io = require('socket.io');
 var path = require('path');
 const bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser');
@@ -30,6 +30,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+const server = http.createServer(app);
+const io = socket_io(server);
 app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use(bodyParser.json())
@@ -49,6 +51,7 @@ app.use('/lobby',indexRouter)
 app.use('/signup', indexRouter);
 app.use('/signin', indexRouter);
 app.use('/login', indexRouter);
+app.use('/multiplay',indexRouter);
 
 
  let userSchema = new mongoose.Schema({
@@ -109,10 +112,6 @@ app.post("/createAcc", (req, res)=>{
     //console.log("User inserted succesfully:");
 //});
 
-//Refracting router handler
-app.get('/', (req, res) =>{
-    res.sendFile(__dirname + '/play.html')
-})
 // Generate Wordle word
 app.get('/word', (req, res) => {
     const options = {
@@ -155,24 +154,14 @@ app.get('/check', (req, res) => {
     })
 })
 
-const server = http.createServer(app)
-const io = socketio(server)
-
-io.on('connection', (socket) =>{
-    console.log('connected')
-    socket.on('turn', (click) => io.emit('turn', click))
-    socket.on('feedback', (colour_change) => io.emit('feedback', colour_change))
-
-    socket.on('FromGameMode',function(data){
-       console.log('Recieved Data from client')
-    }) 
-    
-})
-
-server.on('error', (err) => {
-    console.error(err)
+io.on("connection", (socket) => {
+    socket.on("state", (data) => {
+        socket.broadcast.emit("state", data)
+        console.log(data)
+    })
 })
 
 
 server.listen(8080)
 console.log('Express server running on port 8080')
+

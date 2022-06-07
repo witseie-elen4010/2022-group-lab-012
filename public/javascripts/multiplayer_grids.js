@@ -1,11 +1,32 @@
 //Code Reference: https://github.com/kubowania/wordle-javascript
-const display_square = document.querySelector('.tile-basket')
+const player_1 = document.querySelector("#player-1")
+const player_2 = document.querySelector("#player-2")
+
 const keyboard_keys = document.querySelector('.keyboard-basket')
 const displayed_message = document.querySelector('.message-basket')
+const socket = io()
+
+socket.on("state", (data) => {
+    for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 5; j++) {
+            const attr = document.querySelector(`#opponent-${i}-tile-${j}`);
+            attr.setAttribute("class", `tile flip ${data.grid[i][j]}`);
+        }
+    }
+})
 
 const key_alphabets = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
     'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'ENTER',
     'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<<',
+]
+
+const ele_attribues = [
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
 ]
 
 const grid_row = [
@@ -20,13 +41,10 @@ const grid_row = [
 let current_row = 0
 let current_square = 0
 let is_game_over = false
-let is_enter_clicked = true
-let is_multiplayer = true
 
-function board() {
+function board(player) {
     for (let i = 0; i < grid_row.length; i++) {
         const row_element = document.createElement('div')
-        //row_element.id = i
         row_element.setAttribute('id', 'grid_row_elements-' + i)
         let items = grid_row[i].length
         for (let j = 0; j < items; j++) {
@@ -35,10 +53,40 @@ function board() {
             square_element.classList.add('tile')
             row_element.append(square_element)
         }
-        display_square.append(row_element)
+        player.append(row_element)
     }
 }
-board()
+
+const get_attributes = () => {
+    for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 5; j++) {
+            const attr = document.querySelector(`#grid_row_elements-${i}-tile-${j}`)
+            const _class = attr.getAttribute("class").split(" ")
+            if (_class.length > 2) {
+                ele_attribues[i][j] = _class[2]
+            }
+        }
+    }
+}
+
+function opponentBoard(player) {
+    for (let i = 0; i < grid_row.length; i++) {
+        const row_element = document.createElement('div')
+        //row_element.id = i
+        row_element.setAttribute('id', 'opponent-' + i)
+        let items = grid_row[i].length
+        for (let j = 0; j < items; j++) {
+            const square_element = document.createElement('div')
+            square_element.setAttribute('id', 'opponent-' + i + '-tile-' + j)
+            square_element.classList.add('tile')
+            row_element.append(square_element)
+        }
+        player.append(row_element)
+    }
+}
+
+board(player_1)
+opponentBoard(player_2)
 
 function keys() {
     for (let k = 0; k < key_alphabets.length; k++) {
@@ -59,17 +107,13 @@ function handle_click(keyboard) {
             return
         }
 
-        if (keyboard === 'ENTER') {
+        else if (keyboard === 'ENTER') {
             row_checker()
-            is_enter_clicked = false
             return
         }
-
         add_letter(keyboard)
     }
 }
-
-
 
 function delete_letter() {
     if (current_square > 0) {
@@ -101,7 +145,7 @@ function get_word() {
         .catch(err => console.log(err))
 }
 
-//get_word()
+get_word()
 
 
 function show_message(pop_up_status) {
@@ -173,25 +217,15 @@ function flip_tile() {
         }
     })
 
-    if (!is_enter_clicked) {
-        row_squares.forEach((square, i) => {
-            setTimeout(() => {
-                square.classList.add('flip')
-                square.classList.add(guesses[i].colour)
-                keyboard_colour(guesses[i].letter, guesses[i].colour)
-            }, 400 * i)
-        })
-        return
-    }
-}
+    row_squares.forEach((square, i) => {
+        square.classList.add('flip')
+        square.classList.add(guesses[i].colour)
+        keyboard_colour(guesses[i].letter, guesses[i].colour)   
+    })
 
-(()=>{
-    if(is_multiplayer){
-    get_word()
-    //var keyboard
-    const socket = io()
-    const click = flip_tile()
-    socket.emit('turn', click) 
+    get_attributes()
+
+    socket.emit("state", {
+        grid: ele_attribues,
+    })
 }
-socket.on('turn', click)
-})()

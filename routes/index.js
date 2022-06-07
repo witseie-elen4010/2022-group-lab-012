@@ -55,6 +55,11 @@ router.get('/signin', function(req, res, next) {
   res.sendFile(path.join(__dirname,'../public','signin.html'))
 });
 
+//get to multiplayer page
+router.get('/multiplay', function(req, res, next) {
+  res.sendFile(path.join(__dirname,'../public','multiplay.html'))
+});
+
 //get sigup page
 router.get('/signup', function(req, res, next) {
   res.sendFile(path.join(__dirname,'../public','signup.html'))

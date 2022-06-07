@@ -1,0 +1,119 @@
+* {
+    color: #ffffff;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+  
+  body {
+    background-image:url('../images/twinkling-stars-gif-6.gif');
+  }
+  
+  .game-basket {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+  }
+  .multiplayer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
+  
+  .title-basket {
+    text-align: center;
+    width: 510px;
+    border-bottom: solid 1px #3f3f41;
+  }
+  
+  .title-basket {
+      width: 330px;
+      margin-bottom: 30px;
+  }
+  
+  
+  .keyboard-basket {
+    width: 510px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .keyboard-basket button {
+    width: 43px;
+    height: 58px;
+    border-radius: 4px;
+    border: none;
+    background-color: #828485;
+    margin: 4px;
+  }
+  
+  .keyboard-basket button:nth-child(11) {
+    margin-left: 30px;
+  }
+  
+  .keyboard-basket button:nth-child(20),
+  .keyboard-basket button:nth-child(28) {
+    width: 68px;
+  }
+  
+  .title-basket div {
+    display: flex;
+  }
+  
+  .title-basket .tile {
+    width: 62px;
+    height: 62px;
+    border: 2px solid#1515ca;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+  }
+  
+  .message-basket {
+      height: 40px;
+  }
+  
+  .message-basket p {
+      background-color: #747779;
+      border-radius: 20px;
+      padding: 20px;
+      margin: 0;
+  }
+  
+  .tile.flip {
+      animation: 0.5s linear flipping;
+  }
+  
+  @keyframes flipping {
+      0% {
+          transform: rotateX(0deg);
+      }
+  
+      50% {
+          transform: rotateX(90deg);
+      }
+  
+      100% {
+          transform: rotateX(0deg);
+      }
+  }
+  
+  .absent {
+      background-color: #3a3a3c !important;
+      border: none !important;
+  }
+  
+  .pressent {
+      background-color: #b59f3a !important;
+      border: none !important;
+  }
+  
+  .correct {
+      background-color: #538d4e !important;
+      border: none !important;
+  }
+  
