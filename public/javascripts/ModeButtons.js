@@ -31,7 +31,7 @@ function WaitInlobby() {
     
     const MultiPlayerbutton = document.getElementById('MultiPlayBtn')
     MultiPlayerbutton.addEventListener('click', function myFunction () {
-    window.location = '/lobby'
+    window.location = '/multiplay'
     }, false)
 }
 
