@@ -5,6 +5,9 @@ const CreatedModule = require('../javascripts/TestFunctions.js')
 const mult= CreatedModule.fn1
 const div = CreatedModule.fn2
 const square = CreatedModule.fn3
+const isUser = CreatedModule.fn4
+const isPassword = CreatedModule.fn5
+const userExists = CreatedModule.fn6
 
 describe("Sqaure , Division and Sqaure Functions",()=>{
 
@@ -26,3 +29,23 @@ describe("Sqaure , Division and Sqaure Functions",()=>{
     
 })
     
+describe('Unique username validation', () => {
+    test('entered username', () => {
+      const username = 'Chavi'
+      const result = true
+      expect(isUser(username)).toBe(result)
+    })
+  
+    test('did not enter username', () => {
+      const username = ''
+      const result = false
+      expect(isUser(username)).toBe(result)
+    })
+
+    test('Entered a username that already exists', () => {
+        const username = 'Chavi'
+        const result = true
+        userExists(username)
+        expect(userExists(username)).toBe(result)
+      })
+  })
