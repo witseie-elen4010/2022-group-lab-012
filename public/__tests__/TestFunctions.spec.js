@@ -1,10 +1,10 @@
 'use strict'
-
-const CreatedModule = require('../javascripts/TestFunctions.js')
  /* eslint-env jest */
+const CreatedModule = require('../javascripts/TestFunctions.js')
 const mult= CreatedModule.fn1
 const div = CreatedModule.fn2
 const square = CreatedModule.fn3
+const STOPWATCH = CreatedModule.fn4
 
 describe("Sqaure , Division and Sqaure Functions",()=>{
 
@@ -25,4 +25,38 @@ describe("Sqaure , Division and Sqaure Functions",()=>{
     })
     
 })
-    
+
+describe("Update seconds , minutes and hours stopwatch starts",()=>{
+    test('Update seconds',()=>{
+
+          for (let i=0; i<13; i++)
+          {  
+              STOPWATCH() 
+          };
+           let object = STOPWATCH()
+      expect(STOPWATCH(object)).toStrictEqual({"hours": 0, "minutes": 0, "seconds": 15})
+    })
+
+    test('Update minutes',()=>{
+
+        for (let i=0; i<150; i++)
+        {  
+            STOPWATCH() 
+        };
+         let object = STOPWATCH()
+    expect(STOPWATCH(object)).toStrictEqual({"hours": 0, "minutes": 2, "seconds": 47})
+  })
+
+  test('Update hours',()=>{
+
+    for (let i=0; i<3600; i++)
+    {  
+        STOPWATCH() 
+    };
+     let object = STOPWATCH()
+expect(STOPWATCH(object)).toStrictEqual({"hours": 1, "minutes": 2, "seconds": 49})
+
+})
+
+})
+
