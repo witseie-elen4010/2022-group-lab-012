@@ -86,15 +86,15 @@ form{
 }
 
 .Single-Player{
- position:absolute;
- top: 100%;
- left: 10%;
- height: 50%;
- transform: translate(450%,-800%);
- height: 40px;
- width: 100px;
- color:rgb(190, 10, 245);
- border-radius: 30px;
+  position:absolute;
+  top: 100%;
+  left: 13.5%;
+  height: 50%;
+  transform: translate(450%,-800%);
+  height: 50px;
+  width: 100px;
+  color:rgb(190, 10, 245);
+  border-radius: 30px;
 }
 
 .Single-Player:hover {
