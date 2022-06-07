@@ -31,6 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 //app.use(bodyParser.json())
 //app.use(bodyParser.urlencoded({
  //   extended: true
@@ -45,6 +46,10 @@ app.use('/instructions', indexRouter);
 app.use('/PlaySingleTimed',indexRouter)
 app.use('/Share',indexRouter);
 app.use('/lobby',indexRouter)
+app.use('/signup', indexRouter);
+app.use('/signin', indexRouter);
+app.use('/login', indexRouter);
+
 
  let userSchema = new mongoose.Schema({
     username: String,
@@ -91,9 +96,9 @@ app.post("/createAcc", (req, res)=>{
             }
         }
    ) ;
-   
-    //res.send('Data received:\n' + JSON.stringify(req.body));
-          return res.redirect("welcome.html")  
+
+          return res.redirect("/newAcc")  
+
 });
 
 

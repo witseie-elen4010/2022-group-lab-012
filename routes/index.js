@@ -3,6 +3,10 @@ var express = require('express');
 const path = require('path');
 var router = express.Router();
 
+const controller = require('../server/controller')
+var mongoose = require('mongoose')
+var DB = mongoose.connection;
+
 // GET home page.
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'SPACEWORDLE' });
@@ -46,5 +50,64 @@ router.get('/lobby', function(req, res, next) {
   res.sendFile(path.join(__dirname,'../public','Lobby.html'))
 });
 
+//get sigin page
+router.get('/signin', function(req, res, next) {
+  res.sendFile(path.join(__dirname,'../public','signin.html'))
+});
+
+//get sigup page
+router.get('/signup', function(req, res, next) {
+  res.sendFile(path.join(__dirname,'../public','signup.html'))
+});
+
+var usersDb = require('../server/model')
+
+// Database API
+router.post('/login', function(req, res, next){
+    // Request validation
+    if(!req.body){
+      res.status(400).send({message: 'Form cannot be empty'})
+      return
+    }
+  
+    //create new player object
+    const player = new usersDb({
+      username:req.body.username,
+      password:req.body.password
+    })
+  
+    //add new player object to the database
+    player
+      .save(player)
+      .then(data=>{
+        res.redirect("/newAcc")
+      })
+      .catch(err=>{
+        res.status(500).send({
+          message: err.message || 'Error occcured while adding new player'
+        })
+      })
+})
+router.get('/login', function(req, res, next){
+  // Request validation
+  if(!req.body){
+    res.status(400).send({message: 'Form cannot be empty'})
+    return
+  }
+  
+  //check if the account exists in the database
+  if(usersDb.find(
+    {username:req.body.username},
+    {password:req.body.password}
+  )){
+    res.redirect("/newAcc")
+  }
+  else{
+    res.status(500).redirect("/signup")
+  }
+
+})
+
+router.post('/login', controller.delete)
 
 module.exports = router;

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <!--<script src="../public/javascripts/account.js"></script>-->
+    <title>SIGN IN</title>
+  </head>
+  <body>
+    <h1 id='heading'><u>SPACEWORDLE</u></h1>
+    <br>
+
+  <br>
+    <p>Don't have an account? Sign up <a href="/signup">here</a>.
+      <br>
+    </p>
+
+      <form id="getAcc" name="getAcc" action="/login" method="get">
+      
+        <br>
+        <input type="text" name="username" class="box" placeholder="Enter your username" id="username" required />
+        <br>
+        <input type="password" name="password" class="box" placeholder="Enter your password" id="password" required />
+        <br>
+        <br>
+        <input type="submit" value="Sign in">
+        <br>
+      </form> 
+
+      <h3>OR</h3>
+      <form id="return" name="return" action="/" method="get">
+        <input type="submit" id="return" value="Return to home page">
+      </form>
+
+  </body>
+</html>
