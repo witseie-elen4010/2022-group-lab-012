@@ -5,6 +5,7 @@ const mult= CreatedModule.fn1
 const div = CreatedModule.fn2
 const square = CreatedModule.fn3
 const STOPWATCH = CreatedModule.fn4
+const row_checker = CreatedModule.fn5
 
 describe("Sqaure , Division and Sqaure Functions",()=>{
 
@@ -58,5 +59,34 @@ expect(STOPWATCH(object)).toStrictEqual({"hours": 1, "minutes": 2, "seconds": 49
 
 })
 
+})
+
+
+
+describe("Testing row_checker function",()=>{
+
+    
+    test('Correct word guessed',()=>{
+        let input_word = 'WATER'
+        let API_word = 'WATER'
+        expect(row_checker(input_word, API_word)).toStrictEqual('Awesome!')
+    })
+    test('When guesses are exhausted return correct word and game_over is true',()=>{
+        let input_word = 'THINK'
+        let API_word = 'WATER'
+        let is_game_over = false
+        let current_row = 5
+        expect(row_checker(input_word, API_word,is_game_over, current_row )).toStrictEqual({"message": 'WATER', "is_game_over": true})
+    })
+    test('Check if the row number is incremented',()=>{
+        let input_word = 'THINK'
+        let API_word = 'WATER'
+        let is_game_over = false
+        let current_row = 3
+        let current_square = 5
+        const incrementedValue = 4
+        expect(row_checker(input_word, API_word,is_game_over, current_row, current_square)).toStrictEqual(incrementedValue)
+    })
+        
 })
 
