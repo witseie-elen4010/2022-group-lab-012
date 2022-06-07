@@ -39,10 +39,6 @@ router.get('/PlaySingleTimed', function(req, res, next) {
   res.sendFile(path.join(__dirname,'../public','play.html'))
 });
 
-//get grid and keyboard page
-router.get('/PlaySingleUntimed', function(req, res, next) {
-  res.sendFile(path.join(__dirname,'../public','playUntimed.html'))
-});
 
 //get shareable link
 router.get('/Share', function(req, res, next) {

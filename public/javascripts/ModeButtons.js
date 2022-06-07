@@ -5,21 +5,18 @@ function Redirect(url)
   window.location = url
 }
 
-LoadToSinglePlayerUntimed()
+LoadToSinglePlayertimed()
 WaitInlobby()
 function LoadToSinglePlayertimed () {
-
-  if (ToggleState.innerHTML === 'TimedMode') {
     
     const SinglePlayerbutton = document.getElementById('SinglePlayBtn')
     SinglePlayerbutton.addEventListener('click', function myFunction () {
     window.location = '/PlaySingleTimed'
     }, false)
-  }
-
+  
 }
 
-function LoadToSinglePlayerUntimed () {
+/*function LoadToSinglePlayerUntimed () {
 
   if (ToggleState.innerHTML === 'UntimedMode') {
 
@@ -28,7 +25,7 @@ function LoadToSinglePlayerUntimed () {
     window.location = '/PlaySingleUntimed'
     }, false)
   }
-}
+}*/
 
 function WaitInlobby() {
     
