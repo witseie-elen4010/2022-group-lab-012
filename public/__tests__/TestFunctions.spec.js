@@ -8,6 +8,8 @@ const square = CreatedModule.fn3
 const isUser = CreatedModule.fn4
 const isPassword = CreatedModule.fn5
 const userExists = CreatedModule.fn6
+const passwordCase = CreatedModule.fn7
+const passwordCorrect = CreatedModule.fn8
 
 describe("Sqaure , Division and Sqaure Functions",()=>{
 
@@ -48,4 +50,39 @@ describe('Unique username validation', () => {
         userExists(username)
         expect(userExists(username)).toBe(result)
       })
+  })
+
+  describe('Password validation', () => {
+    test('entered password', () => {
+      const pswrd = 'Chavi'
+      const result = true
+      expect(isPassword(pswrd)).toBe(result)
+    })
+  
+    test('did not enter password', () => {
+      const pswrd = ''
+      const result = false
+      expect(isPassword(pswrd)).toBe(result)
+    })
+
+    test('Password is case sensitive', () => {
+        const pswrd = 'Chavi'
+        const pswrds = 'chavi'
+        const result = true
+        expect(passwordCase(pswrd,pswrds)).toBe(result)
+      })
+
+      test('Can sign in with the right password', () => {
+        const pswrd = 'Chavi'
+        const pswrds = 'Chavi'
+        const result = true
+        expect(passwordCorrect(pswrd,pswrds)).toBe(result)
+      })  
+
+      test('Cannot sign in with different password', () => {
+        const pswrd = 'Chavi'
+        const pswrds = 'havi'
+        const result = false
+        expect(passwordCorrect(pswrd,pswrds)).toBe(result)
+      })  
   })

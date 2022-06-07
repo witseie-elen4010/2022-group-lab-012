@@ -32,11 +32,22 @@ function isPassword(pswrd){
     else{return false}
 }
 
+function passwordCase(pswrd,paswrd){
+    if(pswrd!=paswrd){return true}
+    else{return false}
+}
+
+function passwordCorrect(pswrd,paswrd){
+    if(pswrd==paswrd){return true}
+    else{return false}
+}
 module.exports = {
    fn1: mult,
    fn2: div,
    fn3: Square,
    fn4: isUser,
    fn5: isPassword,
-   fn6: userExist
+   fn6: userExist,
+   fn7: passwordCase,
+   fn8: passwordCorrect
 }
