@@ -6,7 +6,7 @@ const mult= CreatedModule.fn1
 const div = CreatedModule.fn2
 const square = CreatedModule.fn3
 
-describe("Sqaure , Division and Sqaure Functions",()=>{
+describe("Multiplication , Division and Sqaure Functions",()=>{
 
     
     test('Multiplication of 10*10 equals 100',()=>{
