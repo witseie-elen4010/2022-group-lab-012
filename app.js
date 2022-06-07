@@ -52,7 +52,7 @@ app.use('/Share',indexRouter);
 app.use('/lobby',indexRouter)
 app.use('/signup', indexRouter);
 app.use('/signin', indexRouter);
-
+app.use('/login', indexRouter);
 //let userSchema = new mongoose.Schema({
     //username: String,
     //password: String
@@ -90,7 +90,7 @@ app.post("/createAcc", (req, res)=>{
             console.log("User inserted succesfully:");
     });
     //res.send('Data received:\n' + JSON.stringify(req.body));
-          return res.redirect("welcome.html")  
+          return res.redirect("/newAcc")  
 
 });
 
